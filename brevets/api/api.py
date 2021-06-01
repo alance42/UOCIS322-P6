@@ -19,7 +19,7 @@ def convertToCSV(data):
 
 
 class listAll(Resource):
-	def get(self, type):
+	def get(self, type="JSON"):
 		num = request.args.get('top', default=-1, type=int)
 		
 		if num == -1:
@@ -34,7 +34,7 @@ class listAll(Resource):
 		return data
 
 class listOpenOnly(Resource):
-	def get(self, type):
+	def get(self, type="JSON"):
 		num = request.args.get('top', default=-1, type=int)
 
 		if num == -1:
@@ -49,7 +49,7 @@ class listOpenOnly(Resource):
 		return data
 
 class listCloseOnly(Resource):
-	def get(self, type):	
+	def get(self, type="JSON"):	
 		num = request.args.get('top', default=-1, type=int)
 
 		if num == -1:
@@ -65,9 +65,9 @@ class listCloseOnly(Resource):
 
 # Create routes
 # Another way, without decorators
-api.add_resource(listAll, '/listAll/<string:type>')
-api.add_resource(listOpenOnly, '/listOpen/<string:type>')
-api.add_resource(listCloseOnly, '/listClose/<string:type>')
+api.add_resource(listAll, '/listAll', '/listAll/', '/listAll/<string:type>')
+api.add_resource(listOpenOnly, '/listOpenOnly', '/listOpenOnly/', '/listOpenOnly/<string:type>')
+api.add_resource(listCloseOnly,'/listCloseOnly', '/listCloseOnly/', '/listCloseOnly/<string:type>')
 
 # Run the application
 if __name__ == '__main__':
